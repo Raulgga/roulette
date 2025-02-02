@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base Colors -->
+    <color name="green_roulette">#4CAF50</color>
+    <color name="red_roulette">#F44336</color>
+    <color name="black_roulette">#000000</color>
+
+    <!-- Colors Roulette (0-36) -->
+    <color name="color_0">@color/green_roulette</color>
+    <color name="color_1">@color/red_roulette</color>
+    <color name="color_2">@color/black_roulette</color>
+    <color name="color_3">@color/red_roulette</color>
+    <color name="color_4">@color/black_roulette</color>
+    <color name="color_5">@color/red_roulette</color>
+    <color name="color_6">@color/black_roulette</color>
+    <color name="color_7">@color/red_roulette</color>
+    <color name="color_8">@color/black_roulette</color>
+    <color name="color_9">@color/red_roulette</color>
+    <color name="color_10">@color/black_roulette</color>
+    <color name="color_11">@color/black_roulette</color>
+    <color name="color_12">@color/red_roulette</color>
+    <color name="color_13">@color/black_roulette</color>
+    <color name="color_14">@color/red_roulette</color>
+    <color name="color_15">@color/black_roulette</color>
+    <color name="color_16">@color/red_roulette</color>
+    <color name="color_17">@color/black_roulette</color>
+    <color name="color_18">@color/red_roulette</color>
+    <color name="color_19">@color/red_roulette</color>
+    <color name="color_20">@color/black_roulette</color>
+    <color name="color_21">@color/red_roulette</color>
+    <color name="color_22">@color/black_roulette</color>
+    <color name="color_23">@color/red_roulette</color>
+    <color name="color_24">@color/black_roulette</color>
+    <color name="color_25">@color/red_roulette</color>
+    <color name="color_26">@color/black_roulette</color>
+    <color name="color_27">@color/red_roulette</color>
+    <color name="color_28">@color/black_roulette</color>
+    <color name="color_29">@color/black_roulette</color>
+    <color name="color_30">@color/red_roulette</color>
+    <color name="color_31">@color/black_roulette</color>
+    <color name="color_32">@color/red_roulette</color>
+    <color name="color_33">@color/black_roulette</color>
+    <color name="color_34">@color/red_roulette</color>
+    <color name="color_35">@color/black_roulette</color>
+    <color name="color_36">@color/red_roulette</color>
+</resources>
