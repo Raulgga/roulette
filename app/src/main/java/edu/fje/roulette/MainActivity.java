@@ -8,8 +8,10 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
+    private ToolbarHelper toolbarHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String username = inputUser.getText().toString();
 
-                Intent intent = new Intent(MainActivity.this, Visualization.class);
+                Intent intent = new Intent(MainActivity.this, GameActivity.class);
                 intent.putExtra("username", username);
                 startActivity(intent);
             }

@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import androidx.core.content.ContextCompat;
 
-public class Visualization extends View {
+public class RouletteView extends View {
     private Context context;
     private Paint paint; //Objeto para pintar
     private Bitmap ballBitmap; //Imagen de la bola
@@ -20,7 +20,7 @@ public class Visualization extends View {
     private ValueAnimator animator;
     private float angleBall = 0;
 
-    public Visualization(Context context, AttributeSet attrs) {
+    public RouletteView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
         init();

@@ -1,24 +1,42 @@
 package edu.fje.roulette;
 
-import android.os.Bundle;
 
-import androidx.activity.EdgeToEdge;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.appcompat.widget.Toolbar;
 
 public class GameActivity extends AppCompatActivity {
+    private ToolbarHelper toolbarHelper;
+    private RouletteView roulette;
+    private BettingBoard bettingBoard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_game);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+
+        toolbarHelper = new ToolbarHelper(this);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbarHelper.setupToolbar(toolbar);
+
+
+        //Obtener la referencia a la vista personalizada
+        roulette = findViewById(R.id.roulette);
+        bettingBoard = findViewById(R.id.bettingBoard);
+
+        bettingBoard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Implementa esta función para obtener el número seleccionado
+                //int selectedNumber = getSelectedNumber(v);
+                Toast.makeText(GameActivity.this, "Apuesta en el número:", Toast.LENGTH_SHORT).show();
+            }
+
+            //private int getSelectedNumber(View v) {
+            //}
         });
     }
 }
