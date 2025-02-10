@@ -45,4 +45,28 @@
         app:layout_constraintTop_toBottomOf="@id/roulette"
         app:layout_constraintVertical_bias="0.483" />
 
+    <TextView
+        android:id="@+id/user1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/bets"
+        app:layout_constraintEnd_toStartOf="@+id/bets" />
+
+    <TextView
+        android:id="@+id/bets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="70dp"
+        tools:layout_editor_absoluteY="318dp" />
+
+    <TextView
+        android:id="@+id/money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintEnd_toStartOf="@+id/bets"
+        app:layout_constraintTop_toBottomOf="@+id/user1" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

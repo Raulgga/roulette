@@ -97,6 +97,5 @@ public class BettingBoard extends View {
         canvas.drawRect(650, height - 200, 800, height - 100, paint);
         paint.setColor(Color.BLACK);
         canvas.drawText("Docenas", 660, height - 150, paint);
-
     }
 }
