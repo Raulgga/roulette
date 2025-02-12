@@ -20,6 +20,7 @@ public class RouletteView extends View {
     private ValueAnimator animator;
     private float angleBall = 0;
 
+
     public RouletteView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
