@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public class GameActivity extends AppCompatActivity {
-    private ToolbarHelper toolbarHelper;
     private RouletteView roulette;
     private BettingBoard bettingBoard;
 
@@ -17,10 +16,6 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-
-        toolbarHelper = new ToolbarHelper(this);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbarHelper.setupToolbar(toolbar);
 
 
         //Obtener la referencia a la vista personalizada
