@@ -8,20 +8,24 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
 
-import java.util.Arrays;
-
 public class BettingBoard extends View {
     private Paint paint;
     private int cellWidth;
     private int cellHeight;
-
+    private int numero;
 
     public BettingBoard(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    private void init(){
+    public BettingBoard(Context context, int numero) {
+        super(context);
+        this.numero = numero;
+        init();
+    }
+
+    private void init() {
         paint = new Paint();
         paint.setAntiAlias(true);
         paint.setTextSize(30);
@@ -29,93 +33,88 @@ public class BettingBoard extends View {
         paint.setStyle(Paint.Style.STROKE);
     }
 
-    private void drawColumn(Canvas canvas, int startX, int startY, int colSpan, int rowSpan, String x){
-
-        for (int i = 0; i < rowSpan; i++) {
-            int left = startX;
-            int top = startY + (i * cellHeight);
-            int right = left + colSpan * cellWidth;
-            int bottom = top + cellHeight;
-
-            Rect rect = new Rect(left, top, right, bottom);
-            canvas.drawRect(rect, paint);
-
-            //dibujar texto en celdas
-            paint.setStyle(Paint.Style.FILL);
-            String cellText = "x"; //uso de texto especifico
-            float textX = left + (colSpan * cellWidth) / 4;
-            float textY = top + (cellHeight / 2);
-            canvas.drawText(cellText, textX,textY, paint);
-            paint.setStyle(Paint.Style.STROKE);
-        }
-    }
     @Override
-    protected  void drawCuadrado(Canvas canvas, int cordX, int cordY, int colSpan, int rowSpan) {
-        Rect rect = new Rect(left, top, right, bottom);
-        canvas.drawRect(rect, paint);
-
-        //dibujar texto en celdas
-        paint.setStyle(Paint.Style.FILL);
-        String cellText = "x"; //uso de texto especifico
-        float textX = left + (colSpan * cellWidth) / 4;
-        float textY = top + (cellHeight / 2);
-        canvas.drawText(cellText, textX,textY, paint);
-        paint.setStyle(Paint.Style.STROKE);
-    }
-    @Override
-    protected void onDrawCol1(Canvas canvas){
-
-    }
-    @Override
-    protected void onDrawCol2(Canvas canvas){
-
-    }
-    @Override
-    protected void onDrawCol3(Canvas canvas){
-        int HorizontalPoint = 0;
-        int VerticalPoint = 0;
-
-        for (int i = 0; i <=37; i++){
-            if (i % 3 == 0){
-                HorizontalPoint = 0;
-                VerticalPoint += 75;
-            }else{
-                HorizontalPoint += 150;
-            }
-            draw(VerticalPoint, HorizontalPoint, i);
-
-        }
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        // Calcular el ancho y alto de cada celda
+        cellWidth = w / 3;  // 3 columnas
+        cellHeight = (h - (h / 12)) / 12; // 12 filas, restando el espacio para la casilla superior
     }
 
     @Override
-    protected void onDraw(Canvas canvas){
+    protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        int width = getWidth();
-        int height = getHeight();
+        // Dibujar la casilla superior con el "0"
+        drawCasillaSuperior(canvas);
 
-        //Definir ancho y alto de celdas
-        cellWidth = width / 7; // 7 columnas totales
-        cellHeight = height / 14;// 14 filas totales
+        // Dibujar la cuadrícula
+        onDrawCuadricula(canvas);
+    }
 
-        // Columna 1: 6 filas
-        String[] column1Texts = {"1 to 18", "Even", "Black", "Red", "Odd", "19 to 36"};
-        drawColumn(canvas, 0, 0, 1, 6, Arrays.toString(column1Texts));
+    private void drawCasillaSuperior(Canvas canvas) {
+        // Crear pincel para el rectángulo
+        Paint pincelRectangulo = new Paint();
+        pincelRectangulo.setColor(Color.GREEN); // Color verde para la casilla superior
 
-        // Columna 2: 3 filas
-        String column2Texts = Arrays.toString(new String[]{ "1st 12", "2nd 12", "3rd 12" });
-        drawColumn(canvas, cellWidth, 0, 1, 3, column2Texts);
+        // Dibujar el rectángulo de la casilla superior
+        int alturaCasillaSuperior = getHeight() / 12; // Altura de la casilla superior
+        canvas.drawRect(0, 0, getWidth(), alturaCasillaSuperior, pincelRectangulo);
 
-        // Columna 3: 13 filas
-        String column3Texts = Arrays.toString(new String[]{ "1", "4", "7", "10", "13", "16", "19", "22", "26", "29", "32", "35", "2to1" });
-        drawColumn(canvas, 2 * cellWidth, 0, 1, 13, column3Texts);
+        // Crear pincel para el texto
+        Paint pincelTexto = new Paint();
+        pincelTexto.setColor(Color.WHITE); // Color blanco
+        pincelTexto.setTextSize(40); // Tamaño de texto 40
 
-        // Columna 4: 13 filas
-        String column4Texts = Arrays.toString(new String[]{ "2", "5", "8", "11", "14", "17", "20", "23", "27", "30", "33", "36", "2to1" });
-        drawColumn(canvas, 3 * cellWidth, 0, 1, 13, column4Texts);
+        // Obtener límites del texto
+        Rect bounds = new Rect();
+        String texto = "0";
+        pincelTexto.getTextBounds(texto, 0, texto.length(), bounds);
 
-        // Columna 5: 13 filas
-        String column5Texts = Arrays.toString(new String[]{ "3", "6", "9", "12", "15", "18", "21", "24", "28", "31", "34", "37", "2to1" });
-        drawColumn(canvas, 4 * cellWidth, 0, 1, 13, column5Texts);
+        // Calcular posición centrada del texto dentro de la casilla superior
+        int x = (getWidth() - bounds.width()) / 2;
+        int y = (alturaCasillaSuperior + bounds.height()) / 2;
+
+        // Dibujar el texto "0"
+        canvas.drawText(texto, x, y, pincelTexto);
+    }
+
+    protected void onDrawCuadricula(Canvas canvas) {
+        // Dibujar una cuadrícula de 3x12 celdas
+        int alturaCasillaSuperior = getHeight() / 12; // Altura de la casilla superior
+        for (int fila = 0; fila < 12; fila++) {
+            for (int columna = 0; columna < 3; columna++) {
+                int startX = columna * cellWidth;
+                int startY = alturaCasillaSuperior + fila * cellHeight; // Ajustar la posición Y para dejar espacio para la casilla superior
+                // Dibujar cada casilla
+                drawCasilla(canvas, startX, startY, fila * 3 + columna + 1);
+            }
+        }
+    }
+
+    private void drawCasilla(Canvas canvas, int startX, int startY, int numero) {
+        // Crear pincel para el rectángulo
+        Paint pincelRectangulo = new Paint();
+        pincelRectangulo.setColor(Color.BLUE); // Color azul
+
+        // Dibujar el rectángulo de la casilla
+        canvas.drawRect(startX, startY, startX + cellWidth, startY + cellHeight, pincelRectangulo);
+
+        // Crear pincel para el número
+        Paint pincelNumero = new Paint();
+        pincelNumero.setColor(Color.WHITE); // Color blanco
+        pincelNumero.setTextSize(40); // Tamaño de texto 40
+
+        // Obtener límites del texto
+        Rect bounds = new Rect();
+        String texto = String.valueOf(numero);
+        pincelNumero.getTextBounds(texto, 0, texto.length(), bounds);
+
+        // Calcular posición centrada del número dentro de la casilla
+        int x = startX + (cellWidth - bounds.width()) / 2;
+        int y = startY + (cellHeight + bounds.height()) / 2;
+
+        // Dibujar número
+        canvas.drawText(texto, x, y, pincelNumero);
     }
 }
