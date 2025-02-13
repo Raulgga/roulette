@@ -9,22 +9,18 @@
     android:orientation="vertical">
 
     <!-- Toolbar -->
-    <include
+    <!--<include
         layout="@layout/toolbar_layout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        />
-
-    <!-- RouletteView (25% de la pantalla) -->
-
-    <!-- BettingBoard (75% de la pantalla) -->
+        />-->
 
     <edu.fje.roulette.RouletteView
         android:id="@+id/roulette"
         android:layout_width="261dp"
         android:layout_height="185dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="160dp"
         android:layout_weight="1"
         app:layout_constraintBaseline_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,6 +39,5 @@
         app:layout_constraintStart_toStartOf="@+id/roulette"
         app:layout_constraintTop_toBottomOf="@+id/roulette"
         app:layout_constraintVertical_bias="0.0" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,12 +7,13 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <include
+    <!---<include
         layout="@layout/toolbar_layout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        />
+        />-->
+
 
     <Button
         android:id="@+id/btnAddUser"
@@ -75,3 +76,9 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--
+Fragments para girar pantalla
+añadir jugadores en un array que imprima textviews (nombre dinero apuesta) que seran visibles cuando se añada un nuevo slot
+botones de las demas apuestas
+Firebase -->
