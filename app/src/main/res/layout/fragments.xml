@@ -23,22 +23,22 @@
         android:id="@+id/elLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context=".FragmentsActivity"
         tools:showIn="@layout/fragments">
 
         <FrameLayout
             android:id="@+id/contenidorFragmentLlista"
-            android:layout_width="0px"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
             android:layout_weight="1"></FrameLayout>
 
         <FrameLayout
             android:id="@+id/contenidorFragmentDetall"
-            android:layout_width="0px"
-            android:layout_height="match_parent"
-            android:layout_weight="2"></FrameLayout>
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="1"></FrameLayout>
 
     </LinearLayout>
 
