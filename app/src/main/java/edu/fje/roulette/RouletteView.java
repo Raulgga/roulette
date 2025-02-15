@@ -10,23 +10,20 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
-import androidx.core.content.ContextCompat;
 
 public class RouletteView extends View {
     private Context context;
-    private Paint paint; //Objeto para pintar
-    private Bitmap ballBitmap; //Imagen de la bola
-    private int [] colorRoulette; //Array de colores
+    private Paint paint; // Objeto para pintar
+    private Bitmap ballBitmap; // Imagen de la bola
     private ValueAnimator animator;
     private float angleBall = 0;
-
 
     public RouletteView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
         init();
 
-        //configurar listener para detectar clics
+        // Configurar listener para detectar clics
         setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,114 +33,110 @@ public class RouletteView extends View {
     }
 
     public void init() {
-
-        colorRoulette = new int[]{
-                ContextCompat.getColor(context, R.color.color_0),
-                ContextCompat.getColor(context, R.color.color_1),
-                ContextCompat.getColor(context, R.color.color_2),
-                ContextCompat.getColor(context, R.color.color_3),
-                ContextCompat.getColor(context, R.color.color_4),
-                ContextCompat.getColor(context, R.color.color_5),
-                ContextCompat.getColor(context, R.color.color_6),
-                ContextCompat.getColor(context, R.color.color_7),
-                ContextCompat.getColor(context, R.color.color_8),
-                ContextCompat.getColor(context, R.color.color_9),
-                ContextCompat.getColor(context, R.color.color_10),
-                ContextCompat.getColor(context, R.color.color_11),
-                ContextCompat.getColor(context, R.color.color_12),
-                ContextCompat.getColor(context, R.color.color_13),
-                ContextCompat.getColor(context, R.color.color_14),
-                ContextCompat.getColor(context, R.color.color_15),
-                ContextCompat.getColor(context, R.color.color_16),
-                ContextCompat.getColor(context, R.color.color_17),
-                ContextCompat.getColor(context, R.color.color_18),
-                ContextCompat.getColor(context, R.color.color_19),
-                ContextCompat.getColor(context, R.color.color_20),
-                ContextCompat.getColor(context, R.color.color_21),
-                ContextCompat.getColor(context, R.color.color_22),
-                ContextCompat.getColor(context, R.color.color_23),
-                ContextCompat.getColor(context, R.color.color_24),
-                ContextCompat.getColor(context, R.color.color_25),
-                ContextCompat.getColor(context, R.color.color_26),
-                ContextCompat.getColor(context, R.color.color_27),
-                ContextCompat.getColor(context, R.color.color_28),
-                ContextCompat.getColor(context, R.color.color_29),
-                ContextCompat.getColor(context, R.color.color_30),
-                ContextCompat.getColor(context, R.color.color_31),
-                ContextCompat.getColor(context, R.color.color_32),
-                ContextCompat.getColor(context, R.color.color_33),
-                ContextCompat.getColor(context, R.color.color_34),
-                ContextCompat.getColor(context, R.color.color_35),
-                ContextCompat.getColor(context, R.color.color_36)
-        };
-
-        int[] numbersRoulette = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-                21, 22, 23, 24, 25, 25, 25, 26, 27, 28, 28, 29, 30, 31, 32, 33, 34, 35, 36
-        };
-
-        ballBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ballroullete);
-
-        ballBitmap = scaleBitmap(ballBitmap, 50, 50); //tamaño de la imagen
-
-        paint = new Paint(Paint.ANTI_ALIAS_FLAG);//suavizar los bordes de lo que se dibuja
-        paint.setTextSize(40);
+        ballBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ballroulette);
+        ballBitmap = scaleBitmap(ballBitmap, 50, 50); // Tamaño de la imagen
+        paint = new Paint(Paint.ANTI_ALIAS_FLAG); // Suavizar los bordes de lo que se dibuja
+        paint.setTextSize(30); // Reducir el tamaño del texto
     }
 
     private Bitmap scaleBitmap(Bitmap bitmap, int width, int height) {
         return Bitmap.createScaledBitmap(bitmap, width, height, true);
     }
 
+    private int getRouletteColor(int number) {
+        if (number == 0) {
+            return Color.GREEN;
+        }
+
+        int[] redNumbers = {1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36};
+        for (int red : redNumbers) {
+            if (number == red) {
+                return Color.RED;
+            }
+        }
+        return Color.BLACK;
+    }
+
     @Override
-    protected void onDraw( Canvas canvas) {
+    protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        //1.center and roulette radious
+        // 1. Centro y radio de la ruleta
         float centerX = getWidth() / 2f;
         float centerY = getHeight() / 2f;
-        float radius = Math.min(centerX, centerY) -50; //rouletteRadius
+        float radius = Math.min(centerX, centerY) - 50; // Radio de la ruleta
 
-        //2. printRoulette
+        // 2. Dibujar las secciones de la ruleta
         float startAngle = 0;
-        float sweepAngle = 360f / 37; //angle for each number in array
+        float sweepAngle = 360f / 37; // Ángulo para cada número en el arreglo
 
         for (int i = 0; i < 37; i++) {
-            //colorea los trozo de la ruleta
-            paint.setColor(colorRoulette[i]);
+            // Colorear las secciones de la ruleta
+            paint.setColor(getRouletteColor(i));
 
             canvas.drawArc(
                     centerX - radius, centerY - radius, // Esquina superior izquierda
-                    centerX + radius, centerY + radius,   // Esquina inferior derecha
-                    startAngle, sweepAngle,                      // Ángulo inicial y barrido
-                    true, paint);                                // Rellenar la sección
+                    centerX + radius, centerY + radius, // Esquina inferior derecha
+                    startAngle, sweepAngle,             // Ángulo inicial y barrido
+                    true, paint);                       // Rellenar la sección
 
-            //printNumbers in seccion
-            paint.setColor(Color.WHITE); //color texto
-            float textAngle = startAngle + sweepAngle / 2; //Angulo del texto
-            float textX = centerX + (float) (radius * 0.7 * Math.cos(Math.toRadians(textAngle)));
-            float textY = centerY + (float) (radius * 0.7 * Math.sin(Math.toRadians(textAngle)));
+            // Dibujar los números con un borde alrededor
+            paint.setColor(Color.WHITE); // Color del texto
+            paint.setTextAlign(Paint.Align.CENTER); // Alineación centrada
+            paint.setStyle(Paint.Style.FILL); // Relleno sólido para el texto
+            float textAngle = startAngle + sweepAngle / 2; // Ángulo del texto
+            float textX = centerX + (float) (radius * 0.75 * Math.cos(Math.toRadians(textAngle))); // Colocar más afuera
+            float textY = centerY + (float) (radius * 0.75 * Math.sin(Math.toRadians(textAngle))); // Colocar más afuera
+
+            // Añadir un borde negro al texto para mayor visibilidad
+            paint.setStrokeWidth(2); // Grosor del borde
+            paint.setStyle(Paint.Style.STROKE); // Dibujar borde
+            paint.setColor(Color.BLACK);
             canvas.drawText(String.valueOf(i), textX, textY, paint);
+
+            // Dibujar el número real en blanco
+            paint.setStyle(Paint.Style.FILL);
+            paint.setColor(Color.WHITE);
+            canvas.drawText(String.valueOf(i), textX, textY, paint);
+
+            // Dibujar las líneas blancas que separan las casillas
+            paint.setColor(Color.WHITE);
+            paint.setStrokeWidth(4); // Grosor de la línea divisoria
+            canvas.drawLine(
+                    centerX, centerY, // Punto central
+                    centerX + (float) (radius * Math.cos(Math.toRadians(startAngle))),
+                    centerY + (float) (radius * Math.sin(Math.toRadians(startAngle))),
+                    paint); // Línea hacia el borde de la sección
+
+            canvas.drawLine(
+                    centerX, centerY, // Punto central
+                    centerX + (float) (radius * Math.cos(Math.toRadians(startAngle + sweepAngle))),
+                    centerY + (float) (radius * Math.sin(Math.toRadians(startAngle + sweepAngle))),
+                    paint); // Línea hacia el borde de la siguiente sección
 
             startAngle += sweepAngle;
         }
-        //3. print ball in its position
+
+        // 3. Dibujar la bola en su posición
         float ballX = centerX + (float) (radius * 0.8 * Math.cos(Math.toRadians(angleBall)));
         float ballY = centerY + (float) (radius * 0.8 * Math.sin(Math.toRadians(angleBall)));
         canvas.drawBitmap(ballBitmap, ballX - ballBitmap.getWidth() / 2f, ballY - ballBitmap.getHeight() / 2f, paint);
     }
-    private void spinRoulette() {
+
+    void spinRoulette() {
         int completeSpin = 5; // Número de giros completos
-        float finalAngle = 360 * completeSpin + (float) (Math.random() *360);//Angulo final
+        float finalAngle = 360 * completeSpin + (float) (Math.random() * 360); // Ángulo final
 
         animator = ValueAnimator.ofFloat(0, finalAngle);
-        animator.setDuration(3000); //duración del animación
-        animator.setInterpolator(new DecelerateInterpolator()); //desaceleración
+        animator.setDuration(3000); // Duración de la animación
+        animator.setInterpolator(new DecelerateInterpolator()); // Desaceleración
 
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                angleBall = (float) animation.getAnimatedValue(); //Actualiza el angulo
+                angleBall = (float) animation.getAnimatedValue(); // Actualiza el ángulo
 
-                invalidate(); //redibuja la vista
+                invalidate(); // Redibuja la vista
             }
         });
         animator.start();
