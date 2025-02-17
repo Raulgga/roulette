@@ -6,26 +6,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".GameActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/backgroundColor">
 
-    <!-- Toolbar -->
-    <!--<include
-        layout="@layout/toolbar_layout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />-->
+    <!-- GameView (vista personalizada que dibuja las fichas) -->
 
     <edu.fje.roulette.RouletteView
         android:id="@+id/roulette"
         android:layout_width="233dp"
         android:layout_height="269dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="96dp"
         android:layout_weight="1"
         app:layout_constraintBaseline_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.25"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,9 +32,8 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/roulette"
         app:layout_constraintTop_toBottomOf="@+id/roulette"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 
-    <!-- GameView (vista personalizada que dibuja las fichas) -->
     <edu.fje.roulette.GameView
         android:id="@+id/gameView"
         android:layout_width="match_parent"

@@ -12,7 +12,8 @@
             app:layout_constraintBottom_toTopOf="@+id/btnOptions"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:backgroundTint="@color/buttonColor"/>
 
         <Button
             android:id="@+id/btnPlay"
@@ -23,7 +24,9 @@
             app:layout_constraintBottom_toTopOf="@+id/btnAddUser"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:backgroundTint="@color/buttonColor"/>
+
 
         <Button
             android:id="@+id/btnOptions"
@@ -34,5 +37,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:backgroundTint="@color/buttonColor"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

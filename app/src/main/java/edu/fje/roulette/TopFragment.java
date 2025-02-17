@@ -23,4 +23,13 @@ public class TopFragment extends Fragment {
 
         return view;
     }
+
+    public String getUserName() {
+        return inputUser.getText().toString().trim();
+    }
+
+    // Método para limpiar el campo de texto después de guardar el nombre
+    public void clearUserName() {
+        inputUser.setText("");
+    }
 }

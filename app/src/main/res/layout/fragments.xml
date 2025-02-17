@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentsActivity">
+   >
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Theme.AppCompat">
+        android:theme="@style/Theme.Roulette">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -32,15 +32,14 @@
             android:id="@+id/contenidorFragmentLlista"
             android:layout_width="match_parent"
             android:layout_height="0px"
-            android:layout_weight="1"></FrameLayout>
+            android:layout_weight="1" />
 
         <FrameLayout
             android:id="@+id/contenidorFragmentDetall"
             android:layout_width="match_parent"
             android:layout_height="0px"
-            android:layout_weight="1"></FrameLayout>
+            android:layout_weight="1" />
 
     </LinearLayout>
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

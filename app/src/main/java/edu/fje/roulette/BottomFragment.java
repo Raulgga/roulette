@@ -19,6 +19,7 @@ public class BottomFragment extends Fragment {
     public Button btnPlay;
     public Button btnAddUser;
     public Button btnOptions;
+    private OnAddUserListener mlistener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,9 +41,20 @@ public class BottomFragment extends Fragment {
         btnAddUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (mlistener != null) {
+                    mlistener.onAddUser();
+                }
             }
         });
 
         return view;
+    }
+
+    public void setOnAddUserListener(OnAddUserListener listener) {
+        mlistener = listener;
+    }
+
+    public interface OnAddUserListener {
+        void onAddUser();
     }
 }
