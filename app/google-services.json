@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "187915095360",
+    "project_id": "ruleta-8960e",
+    "storage_bucket": "ruleta-8960e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:187915095360:android:f7f6ec832be892ec91bea5",
+        "android_client_info": {
+          "package_name": "edu.fje.roulette"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnqtFhIPesCbO8BLd26VsQsYTbAQmYznY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
