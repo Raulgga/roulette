@@ -7,7 +7,10 @@ import android.graphics.Rect;
 
 public class Chip {
     float x, y;
-    int color, value;
+    private final int color;
+    private final int value;
+    private int betNumber = 0;
+    private int specialBet = -1;
     private final float initialX, initialY;
 
     public Chip(float x, float y, int color, int value) {
@@ -15,6 +18,8 @@ public class Chip {
         this.y = y;
         this.color = color;
         this.value = value;
+        this.betNumber = betNumber;
+        this.specialBet = specialBet;
         this.initialX = x;
         this.initialY = y;
     }
@@ -40,5 +45,21 @@ public class Chip {
     public void resetPosition() {
         this.x = initialX;
         this.y = initialY;
+    }
+
+    public int getBetNumber(){
+        return betNumber;
+    }
+
+    public int getValue(){
+        return value;
+    }
+
+    public int getSpecialBet(){
+        return specialBet;
+    }
+
+    public void setSpecialBet(int specialBet){
+        this.specialBet = specialBet;
     }
 }

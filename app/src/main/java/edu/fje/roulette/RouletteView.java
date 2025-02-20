@@ -17,19 +17,13 @@ public class RouletteView extends View {
     private Bitmap ballBitmap; // Imagen de la bola
     private ValueAnimator animator;
     private float angleBall = 0;
+    private int winningNumber;
 
     public RouletteView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
         init();
 
-        // Configurar listener para detectar clics
-        setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                spinRoulette();
-            }
-        });
     }
 
     public void init() {
@@ -43,7 +37,7 @@ public class RouletteView extends View {
         return Bitmap.createScaledBitmap(bitmap, width, height, true);
     }
 
-    private int getRouletteColor(int number) {
+    int getRouletteColor(int number) {
         if (number == 0) {
             return Color.GREEN;
         }
@@ -55,6 +49,17 @@ public class RouletteView extends View {
             }
         }
         return Color.BLACK;
+    }
+
+    public boolean isRed(int number){
+        int[] redNumbers = {1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36};
+
+        for (int red : redNumbers) {
+            if (red == number) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
@@ -126,6 +131,7 @@ public class RouletteView extends View {
     void spinRoulette() {
         int completeSpin = 5; // Número de giros completos
         float finalAngle = 360 * completeSpin + (float) (Math.random() * 360); // Ángulo final
+        winningNumber = (int) (Math.random()*37);
 
         animator = ValueAnimator.ofFloat(0, finalAngle);
         animator.setDuration(3000); // Duración de la animación
@@ -140,5 +146,9 @@ public class RouletteView extends View {
             }
         });
         animator.start();
+    }
+
+    public int getWinningNumber(){
+        return winningNumber;
     }
 }

@@ -27,7 +27,6 @@
             app:layout_constraintStart_toStartOf="parent"
             android:backgroundTint="@color/buttonColor"/>
 
-
         <Button
             android:id="@+id/btnOptions"
             android:layout_width="wrap_content"
@@ -39,5 +38,4 @@
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             android:backgroundTint="@color/buttonColor"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
