@@ -3,7 +3,6 @@ package edu.fje.roulette;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 
 public class Chip {
     float x, y;
